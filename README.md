@@ -8,7 +8,7 @@
 
 ``` git pull ``` : Intègre les modifications d’un dépôt distant dans la branche actuelle. Dans son mode par défaut, git pull est l’abréviation de git fetch suivi de git merge FETCH_HEAD.
 
-``` git checkout <nom de la branche> ``` : Permet de changer de branche "master" | "dev'
+``` git checkout <nom de la branche> ``` : Permet de changer de branche "master" | "dev"
 
 **2- Avant toute modification du code dans une branche :**
 
@@ -43,3 +43,18 @@ Les modifications qui auront été pushées sur cette branche se synchroniseront
 - Dev : ``` git checkout dev ``` Repo de développement
 
 Prévenir le groupe avant chaque push sur la branche
+
+## Templates
+
+Dans le dossier /templates :
+
+- /auth -> Formulaire d'inscription/connexion
+- /home -> Page d'accueil
+- /includes -> Blocs de code inclus dans toutes les pages
+- /pokemon -> Pages en lien avec les articles, catégories et pages privées
+
+## Controllers
+
+- AuthController -> Traitement inscription/connexion
+- HomeController -> Traitement page d'accueil
+- PokemonController -> Traitement des catégories, articles, CRUD
