@@ -21,7 +21,7 @@ class PokemonController extends AbstractController
 	{
 		$repository = $doctrine->getRepository(Pokemon::class)->findRandom();
 
-		dump($repository);
+	
 
 		return $repository;
 	}
