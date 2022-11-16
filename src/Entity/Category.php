@@ -12,89 +12,94 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Category
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+	/**
+	 * @ORM\Id
+	 * @ORM\GeneratedValue
+	 * @ORM\Column(type="integer")
+	 */
+	private $id;
 
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $name;
+	/**
+	 * @ORM\Column(type="string", length=50)
+	 */
+	private $name;
 
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $url;
+	/**
+	 * @ORM\Column(type="string", length=50)
+	 */
+	private $url;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Pokemon::class, mappedBy="category")
-     */
-    private $pokemon;
+	/**
+	 * @ORM\Column(type="string", length=50)
+	 */
+	private $logo_url;
 
-    public function __construct()
-    {
-        $this->pokemon = new ArrayCollection();
-    }
+	/**
+	 * @ORM\OneToMany(targetEntity=Pokemon::class, mappedBy="category")
+	 */
+	private $pokemon;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+	public function __construct()
+	{
+		$this->pokemon = new ArrayCollection();
+	}
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
+	public function getId(): ?int
+	{
+		return $this->id;
+	}
 
-    public function setName(string $name): self
-    {
-        $this->name = $name;
+	public function getName(): ?string
+	{
+		return $this->name;
+	}
 
-        return $this;
-    }
+	public function setName(string $name): self
+	{
+		$this->name = $name;
 
-    public function getUrl(): ?string
-    {
-        return $this->url;
-    }
+		return $this;
+	}
 
-    public function setUrl(string $url): self
-    {
-        $this->url = $url;
+	public function getUrl(): ?string
+	{
+		return $this->url;
+	}
 
-        return $this;
-    }
+	public function setUrl(string $url): self
+	{
+		$this->url = $url;
 
-    /**
-     * @return Collection<int, Pokemon>
-     */
-    public function getPokemon(): Collection
-    {
-        return $this->pokemon;
-    }
+		return $this;
+	}
 
-    public function addPokemon(Pokemon $pokemon): self
-    {
-        if (!$this->pokemon->contains($pokemon)) {
-            $this->pokemon[] = $pokemon;
-            $pokemon->setCategory($this);
-        }
+	/**
+	 * @return Collection<int, Pokemon>
+	 */
+	public function getPokemon(): Collection
+	{
+		return $this->pokemon;
+	}
 
-        return $this;
-    }
+	public function addPokemon(Pokemon $pokemon): self
+	{
+		if (!$this->pokemon->contains($pokemon)) {
+			$this->pokemon[] = $pokemon;
+			$pokemon->setCategory($this);
+		}
 
-    public function removePokemon(Pokemon $pokemon): self
-    {
-        if ($this->pokemon->removeElement($pokemon)) {
-            // set the owning side to null (unless already changed)
-            if ($pokemon->getCategory() === $this) {
-                $pokemon->setCategory(null);
-            }
-        }
+		return $this;
+	}
 
-        return $this;
-    }
+	public function removePokemon(Pokemon $pokemon): self
+	{
+		if ($this->pokemon->removeElement($pokemon)) {
+			// set the owning side to null (unless already changed)
+			if ($pokemon->getCategory() === $this) {
+				$pokemon->setCategory(null);
+			}
+		}
+
+		return $this;
+	}
 }

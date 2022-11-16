@@ -19,6 +19,11 @@ class PokemonController extends AbstractController
 		return [];
 	}
 
+	public function readAllCategories(): Response
+	{
+		return $this->render('pokemon/categories.html.twig');
+	}
+
 	/**
 	 * Récupère et affiche tous les pokemons d'une catégorie
 	 * @Route("/pokemon/{category}", name="pokemon_category")
