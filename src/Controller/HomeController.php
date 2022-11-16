@@ -21,6 +21,8 @@ class HomeController extends AbstractController
 		// Affichage des deux catégories et articles aléatoires
 		$randomArticle = PokemonController::readRandom($doctrine);
 
+		// commentaire
+
 		return $this->render('home/index.html.twig', [
 			'randomArticle' => $randomArticle
 		]);
