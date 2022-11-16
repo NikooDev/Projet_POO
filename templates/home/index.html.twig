@@ -4,4 +4,10 @@
 
 {% block body %}
 
+	{% for r in randomArticle %}
+
+		<div>{{ r.name }}</div>
+
+	{% endfor %}
+
 {% endblock %}

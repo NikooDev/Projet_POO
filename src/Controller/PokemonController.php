@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Pokemon;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,12 +13,17 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PokemonController extends AbstractController
 {
+
 	/**
 	 * Récupère deux catégories et articles aléatoire
 	 */
-	static function readArticleRandom(): array
+	public static function readRandom(ManagerRegistry $doctrine): array
 	{
-		return [];
+		$repository = $doctrine->getRepository(Pokemon::class)->findRandom();
+
+		dump($repository);
+
+		return $repository;
 	}
 
 	public function readAllCategories(): Response

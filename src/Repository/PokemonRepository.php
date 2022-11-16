@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Pokemon;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -16,28 +18,48 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class PokemonRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, Pokemon::class);
-    }
+	public function __construct(ManagerRegistry $registry)
+	{
+		parent::__construct($registry, Pokemon::class);
+	}
 
-    public function add(Pokemon $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->persist($entity);
+	public function add(Pokemon $entity, bool $flush = false): void
+	{
+		$this->getEntityManager()->persist($entity);
 
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
-    }
+		if ($flush) {
+			$this->getEntityManager()->flush();
+		}
+	}
 
-    public function remove(Pokemon $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->remove($entity);
+	public function remove(Pokemon $entity, bool $flush = false): void
+	{
+		$this->getEntityManager()->remove($entity);
 
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
-    }
+		if ($flush) {
+			$this->getEntityManager()->flush();
+		}
+	}
+
+	/**
+	 *
+	 * @return array
+	 */
+	public function findRandom(): array
+	{
+		$entityManager = $this->getEntityManager();
+
+		$query = $entityManager
+			->createQuery('SELECT c, p FROM App\Entity\Category c LEFT JOIN App\Entity\Pokemon p WITH p.category = c.id ORDER BY RANDOM()')
+			->setMaxResults(4);
+
+		return $query->getResult();
+
+		/*return $this->createQueryBuilder('p')
+			->orderBy('RANDOM()')
+			->setMaxResults(1)
+			->getQuery();*/
+	}
 
 //    /**
 //     * @return Pokemon[] Returns an array of Pokemon objects
