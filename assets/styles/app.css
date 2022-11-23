@@ -1,3 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+	background-color: #f1f2f3;
+	font-family: 'Raleway', Arial, sans-serif;
+	overflow-x: hidden;
+}
+
+/* CONTAINER */
+@media screen and (max-width: 1024px) {
+	.container {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+}
+
+/* THEME */
+.bg-primary {
+	background-color: #f7cc2e;
+}
+.color-secondary {
+	color: #436bb5;
+}
+
+.title-size {
+	font-size: calc(1.375rem + 1.5vw);
+}
+
+/* CAROUSEL */
+.carousel {
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+	position: relative;
+	overflow: hidden;
+	border-radius: 15px;
+	min-height: 15rem;
+	padding: 0 .5rem;
+}
+.carousel-container {
+	display: flex;
+	transition: transform .3s ease-in-out;
+	transform: translate3d(0, 0, 0);
+}
+.carousel-items {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 15rem;
+	padding: 2.5rem;
+}
+.carousel-next, .carousel-prev {
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .75);
+	border-radius: 50%;
+	height: 3rem;
+	width: 3rem;
+	top: 50%;
+	margin-top: -1.5rem;
+	opacity: .7;
+	right: 1.5rem;
+	cursor: pointer;
+	position: absolute;
+	transition: transform .3s ease-in-out, opacity .3s ease-in-out;
+}
+.carousel-next:hover, .carousel-prev:hover {
+	opacity: 1;
+}
+.carousel-next-hidden, .carousel-prev-hidden {
+	opacity: 0;
+}
+.carousel-next {
+	background: url(~@static/arrow.svg) center center no-repeat;
+	transform: rotate(-90deg);
+}
+.carousel-next:hover {
+	transform: scale(1.2) rotate(-90deg);
+}
+.carousel-prev {
+	background: url(~@static/arrow.svg) center center no-repeat;
+	transform: rotate(90deg);
+	right: auto;
+	left: 1.5rem;
+}
+.carousel-prev:hover {
+	transform: scale(1.2) rotate(90deg);
+}
+
+/* STYLE CAROUSEL */
+.bg-bug .carousel { background-color: #91c03b; }
+.bg-dragon .carousel { background-color: #2d70c2; }
+.bg-electrik .carousel { background-color: #f5d147; }
+.bg-fight .carousel { background-color: #ce426b; }
+.bg-fire .carousel { background-color: #f19b53; }
+.bg-fly .carousel { background-color: #8faade; }
+.bg-ghost .carousel { background-color: #526bad; }
+.bg-grass .carousel { background-color: #63bb5a; }
+.bg-ground .carousel { background-color: #d67744; }
+.bg-ice .carousel { background-color: #6fc6b9; }
+.bg-normal .carousel { background-color: #d7d7d7; }
+.bg-poison .carousel { background-color: #aa6ec8; }
+.bg-psy .carousel { background-color: #d1636a; }
+.bg-rock .carousel { background-color: #c5b68c; }
+.bg-water .carousel { background-color: #4f92d6; }
+
+/* ASIDE */
+.aside {
+	border-top-right-radius: 15px;
+	top: 5rem;
+	display: none;
+}
+@media screen and (min-width: 1024px) {
+	.aside {
+		display: flex;
+	}
+}

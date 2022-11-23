@@ -2,30 +2,35 @@
 
 namespace App\Controller;
 
-use App\Entity\Pokemon;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Classe des articles
+ * Gestion des articles
  */
 class PokemonController extends AbstractController
 {
+	/**
+	 * @var ManagerRegistry
+	 */
+	protected $em;
 
 	/**
-	 * Récupère deux catégories et articles aléatoire
+	 * Constructeur
+	 * Hydrate l'entityManager
+	 * @param ManagerRegistry $entityManager
 	 */
-	public static function readRandom(ManagerRegistry $doctrine): array
-	{
-		$repository = $doctrine->getRepository(Pokemon::class)->findRandom();
-
-	
-
-		return $repository;
+	public function __construct(ManagerRegistry $entityManager) {
+		$this->em = $entityManager;
 	}
 
+	/**
+	 * Récupère la liste des catégories
+	 * @Route("/pokemon", name="pokemon_categories")
+	 * @return Response
+	 */
 	public function readAllCategories(): Response
 	{
 		return $this->render('pokemon/categories.html.twig');

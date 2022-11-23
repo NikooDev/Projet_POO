@@ -31,4 +31,6 @@ yarn-error.log
 /.idea/inspectionProfiles/Project_Default.xml
 /.idea/Projet_POO.iml
 /.idea/vcs.xml
+/.idea/symfony2.xml
+/.idea/dataSources.local.xml
 /yarn.lock

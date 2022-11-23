@@ -90,193 +90,210 @@ class Pokemon
 	private $talent;
 
 	/**
+	 * @ORM\Column(type="string", length=255, nullable=true)
+	 */
+	private $image_url;
+
+	/**
 	 * @ORM\ManyToOne(targetEntity=User::class, inversedBy="pokemons")
 	 * @ORM\JoinColumn(nullable=false)
 	 */
 	private $user;
 
 	public function getId(): ?int
-         	{
-         		return $this->id;
-         	}
+	{
+		return $this->id;
+	}
 
 	public function getAuthor(): ?string
-         	{
-         		return $this->author;
-         	}
+	{
+		return $this->author;
+	}
 
 	public function setAuthor(string $author): self
-         	{
-         		$this->author = $author;
-         
-         		return $this;
-         	}
+	{
+		$this->author = $author;
+
+		return $this;
+	}
 
 	public function getName(): ?string
-         	{
-         		return $this->name;
-         	}
+	{
+		return $this->name;
+	}
 
 	public function setName(string $name): self
-         	{
-         		$this->name = $name;
-         
-         		return $this;
-         	}
+	{
+		$this->name = $name;
+
+		return $this;
+	}
 
 	public function getType(): ?string
-         	{
-         		return $this->type;
-         	}
+	{
+		return $this->type;
+	}
 
 	public function setType(string $type): self
-         	{
-         		$this->type = $type;
-         
-         		return $this;
-         	}
+	{
+		$this->type = $type;
+
+		return $this;
+	}
 
 	public function getCategory(): ?Category
-         	{
-         		return $this->category;
-         	}
+	{
+		return $this->category;
+	}
 
 	public function setCategory(?Category $category): self
-         	{
-         		$this->category = $category;
-         
-         		return $this;
-         	}
+	{
+		$this->category = $category;
+
+		return $this;
+	}
 
 	public function getSize(): ?int
-         	{
-         		return $this->size;
-         	}
+	{
+		return $this->size;
+	}
 
 	public function setSize(int $size): self
-         	{
-         		$this->size = $size;
-         
-         		return $this;
-         	}
+	{
+		$this->size = $size;
+
+		return $this;
+	}
 
 	public function getWeight(): ?int
-         	{
-         		return $this->weight;
-         	}
+	{
+		return $this->weight;
+	}
 
 	public function setWeight(int $weight): self
-         	{
-         		$this->weight = $weight;
-         
-         		return $this;
-         	}
+	{
+		$this->weight = $weight;
+
+		return $this;
+	}
 
 	public function getSex(): ?string
-         	{
-         		return $this->sex;
-         	}
+	{
+		return $this->sex;
+	}
 
 	public function setSex(string $sex): self
-         	{
-         		$this->sex = $sex;
-         
-         		return $this;
-         	}
+	{
+		$this->sex = $sex;
+
+		return $this;
+	}
 
 	public function getCatchRate(): ?string
-         	{
-         		return $this->catch_rate;
-         	}
+	{
+		return $this->catch_rate;
+	}
 
 	public function setCatchRate(string $catch_rate): self
-         	{
-         		$this->catch_rate = $catch_rate;
-         
-         		return $this;
-         	}
+	{
+		$this->catch_rate = $catch_rate;
+
+		return $this;
+	}
 
 	public function getColor(): ?string
-         	{
-         		return $this->color;
-         	}
+	{
+		return $this->color;
+	}
 
 	public function setColor(string $color): self
-         	{
-         		$this->color = $color;
-         
-         		return $this;
-         	}
+	{
+		$this->color = $color;
+
+		return $this;
+	}
 
 	public function getDescription(): ?string
-         	{
-         		return $this->description;
-         	}
+	{
+		return $this->description;
+	}
 
 	public function setDescription(string $description): self
-         	{
-         		$this->description = $description;
-         
-         		return $this;
-         	}
+	{
+		$this->description = $description;
+
+		return $this;
+	}
 
 	public function getAttitude(): ?string
-         	{
-         		return $this->attitude;
-         	}
+	{
+		return $this->attitude;
+	}
 
 	public function setAttitude(string $attitude): self
-         	{
-         		$this->attitude = $attitude;
-         
-         		return $this;
-         	}
+	{
+		$this->attitude = $attitude;
+
+		return $this;
+	}
 
 	public function getDifferences(): ?string
-         	{
-         		return $this->differences;
-         	}
+	{
+		return $this->differences;
+	}
 
 	public function setDifferences(string $differences): self
-         	{
-         		$this->differences = $differences;
-         
-         		return $this;
-         	}
+	{
+		$this->differences = $differences;
+
+		return $this;
+	}
 
 	public function getEvolution(): ?string
-         	{
-         		return $this->evolution;
-         	}
+	{
+		return $this->evolution;
+	}
 
 	public function setEvolution(string $evolution): self
-         	{
-         		$this->evolution = $evolution;
-         
-         		return $this;
-         	}
+	{
+		$this->evolution = $evolution;
+
+		return $this;
+	}
 
 	public function getTalent(): ?string
-         	{
-         		return $this->talent;
-         	}
+	{
+		return $this->talent;
+	}
 
 	public function setTalent(string $talent): self
-         	{
-         		$this->talent = $talent;
-         
-         		return $this;
-         	}
+	{
+		$this->talent = $talent;
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
+		return $this;
+	}
 
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
+	public function getImageUrl(): ?string
+	{
+		return $this->image_url;
+	}
 
-        return $this;
-    }
+	public function setImageUrl(string $image_url): self
+	{
+		$this->image_url = $image_url;
+
+		return $this;
+	}
+
+	public function getUser(): ?User
+	{
+		return $this->user;
+	}
+
+	public function setUser(?User $user): self
+	{
+		$this->user = $user;
+
+		return $this;
+	}
 }

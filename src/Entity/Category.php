@@ -30,14 +30,14 @@ class Category
 	private $url;
 
 	/**
-	 * @ORM\Column(type="string", length=50)
-	 */
-	private $logo_url;
-
-	/**
 	 * @ORM\OneToMany(targetEntity=Pokemon::class, mappedBy="category")
 	 */
 	private $pokemon;
+
+	/**
+	 * @ORM\Column(type="string", length=50)
+	 */
+	private $logo_url;
 
 	public function __construct()
 	{
@@ -69,6 +69,18 @@ class Category
 	public function setUrl(string $url): self
 	{
 		$this->url = $url;
+
+		return $this;
+	}
+
+	public function getLogoUrl(): ?string
+	{
+		return $this->logo_url;
+	}
+
+	public function setLogoUrl(string $logo_url): self
+	{
+		$this->logo_url = $logo_url;
 
 		return $this;
 	}

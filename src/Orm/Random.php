@@ -10,6 +10,7 @@ use Doctrine\ORM\Query\AST\Functions\FunctionNode;
 /**
  * Classe permettant d'ajouter une fonction numérique RANDOM() dans les requêtes doctrine
  * Cette classe est déclarée dans config/packages/doctrine.yaml
+ * Méthode trouvée sur https://gist.github.com/Ocramius/919465
  */
 class Random extends FunctionNode
 {
@@ -23,6 +24,11 @@ class Random extends FunctionNode
 		$parser->match(Lexer::T_CLOSE_PARENTHESIS);
 	}
 
+	/**
+	 * Retourne la fonction numérique RANDOM()
+	 * @param SqlWalker $sqlWalker
+	 * @return string
+	 */
 	public function getSql(SqlWalker $sqlWalker): string
 	{
 		return 'RANDOM()';

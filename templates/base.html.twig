@@ -8,15 +8,17 @@
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
-
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</head>
 	<body>
-		<div class="container mx-auto">
+		{% include 'includes/header.twig' %}
+		{% include 'includes/sidebar.twig' %}
+		<section class="container mx-auto pl-64 pt-28">
 			{% block body %}{% endblock %}
-		</div>
+		</section>
+		{% include 'includes/footer.twig' %}
 		<script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
 	</body>
 </html>

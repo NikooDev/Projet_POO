@@ -4,10 +4,39 @@
 
 {% block body %}
 
-	{% for r in randomArticle %}
+<div class="pb-12">
+	<h1 class="color-secondary title-size text-center font-light">Bienvenue sur Poké Wiki</h1>
+	<p class="text-lg text-center mt-5">
+		Poké Wiki est un site web fan qui recense les Pokémon des différentes générations.<br>
+		Créez dès maintenant votre compte et contribuer au recensement de nouveaux Pokémon.
+	</p>
 
-		<div>{{ r.name }}</div>
+	{# Boucle sur les catégories #}
+	{% for key, category in randomArticle['cat'] %}
+
+		<div class="flex items-center mt-14 mb-5 color-secondary text-3xl">
+			<span>Type {{ category.name }}</span>
+			<img src="{{ asset('/static/categories/'~category.logoUrl) }}" alt="" class="ml-3" width="45" height="45">
+		</div>
+		<div id="{{ 'carousel-'~key }}" class="relative w-[90%] mx-auto opacity-0 transition-opacity {{ 'bg-'~category.url }}">
+
+		{# Boucle sur les articles #}
+		{% for pokemon in randomArticle['cat'~category.id] %}
+
+			<div class="flex justify-center items-center bg-black bg-opacity-50 rounded-2xl h-full w-full relative p-8 z-30">
+				<div class="absolute h-full w-full">
+					<p class="absolute w-full right-0 font-medium bg-black bg-opacity-50 text-gray-200 px-5 py-2 rounded-t-2xl text-center uppercase">{{ pokemon.name }}</p>
+					<a href="{{ path('auth_login') }}" class="flex absolute right-0 bottom-0 mx-auto font-medium bg-black bg-opacity-50 text-gray-200 text-sm px-5 py-2 rounded-tl-2xl rounded-br-2xl">Plus d'informations</a>
+				</div>
+				<img src="{{ asset('/static/pokemons/'~pokemon.image_url) }}" alt="" class="object-contain" height="230" width="230">
+			</div>
+
+		{% endfor %}
+
+		</div>
 
 	{% endfor %}
+
+</div>
 
 {% endblock %}
