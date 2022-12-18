@@ -151,12 +151,13 @@
 				imagePreview.addEventListener('change', (event) => {
 					if (imagePreview.files[0]) {
 						const type = imagePreview.files[0].type
-						if (type === 'image/png' || type === 'image/jpg') {
+						if (type === 'image/png' || type === 'image/jpg' || type === 'image/jpeg') {
 							let reader = new FileReader()
 							reader.onload = (event) => {
 								image.setAttribute('src', event.target.result)
 								image.classList.remove('hidden')
 							}
+							errorTypes && errorTypes.classList.add('hidden')
 							reader.readAsDataURL(event.target.files[0])
 						} else {
 							errorTypes && errorTypes.classList.remove('hidden')

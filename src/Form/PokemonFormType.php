@@ -123,7 +123,8 @@ class PokemonFormType extends AbstractType
 						'maxSize' => '1024k',
 						'mimeTypes' => [
 							'image/jpg',
-							'image/png'
+							'image/png',
+							'image/jpeg'
 						],
 						'mimeTypesMessage' => 'Votre image doit être de type jpg ou png',
 					])
