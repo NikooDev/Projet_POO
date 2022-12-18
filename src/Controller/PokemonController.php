@@ -120,7 +120,6 @@ class PokemonController extends AbstractController
 	 * @param Request $request
 	 * @param PokemonRepository $pokemonRepository
 	 * @param CategoryRepository $categoryRepository
-	 * @param EntityManagerInterface $entityManager
 	 * @param ValidatorInterface $validator
 	 * @param SluggerInterface $slugger
 	 * @param string $name
@@ -130,7 +129,6 @@ class PokemonController extends AbstractController
 		Request $request,
 		PokemonRepository $pokemonRepository,
 		CategoryRepository $categoryRepository,
-		EntityManagerInterface $entityManager,
 		ValidatorInterface $validator,
 		SluggerInterface $slugger,
 		string $name): Response
@@ -184,8 +182,8 @@ class PokemonController extends AbstractController
 			$pokemons->setCategory($category);
 			$pokemons->setName(ucfirst($name));
 
-			$entityManager->persist($pokemons);
-			$entityManager->flush();
+			$this->em->persist($pokemons);
+			$this->em->flush();
 
 			return $this->redirectToRoute('pokemon_user', ['username' => $user->getUserIdentifier()]);
 		} else {
