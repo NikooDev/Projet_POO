@@ -33,11 +33,6 @@ class PokemonController extends AbstractController
 	}
 
 	/**
-	 * A FINIR :
-	 *
-	 * - Gestion des erreurs de formulaire update
-	 * - Faire la création de pokemon + gestion erreur formulaire create
-	 *
 	 * @Route("/pokemon/create", name="pokemon_create")
 	 * @param Request $request
 	 * @param CategoryRepository $categoryRepository
