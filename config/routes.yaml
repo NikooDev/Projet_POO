@@ -1,0 +1,4 @@
+# Déconnexion utilisateur
+auth_logout:
+  path: /logout
+  methods: GET

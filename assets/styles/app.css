@@ -1,0 +1,321 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	background-color: #f1f2f3;
+	font-family: 'Raleway', Arial, sans-serif;
+	overflow-x: hidden;
+}
+
+/* CONTAINER */
+.overlay {
+	background-color: rgba(0, 0, 0, 0);
+	opacity: 0;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+	transition: background-color .25s ease-in-out, opacity .25s ease-in-out, z-index .25s ease-in-out;
+}
+@media screen and (max-width: 1024px) {
+	.overlay.active {
+		background-color: #000;
+		opacity: .7;
+		z-index: 30;
+	}
+}
+section {
+	min-height: 100vh;
+	clear: right;
+}
+.container {
+	padding-right: 1rem;
+	padding-left: 17rem;
+}
+@media screen and (max-width: 1024px) {
+	.container {
+		padding-left: 1rem;
+	}
+}
+
+/* THEME */
+.text-title {
+	font-size: calc(1.375rem + 1.5vw);
+	text-shadow: 1px 1px 3px #fff;
+}
+.text-shadow {
+	text-shadow: 0 0 rgba(0, 0, 0, .5);
+}
+.text-shadow:hover {
+	text-shadow: 2px 2px 2px rgba(0, 0, 0, .5);
+}
+.w-40p {
+	width: 40%;
+}
+.w-60p {
+	width: 60%;
+}
+
+/* BACK BUTTON */
+.back-svg {
+	left: 0;
+	transition: left .25s ease-in-out;
+}
+.back span:after {
+	content: "";
+	height: .23rem;
+	width: 100%;
+	@apply bg-secondary;
+	border-radius: 30px;
+	position: absolute;
+	bottom: -4px;
+	left: 0;
+	opacity: 0;
+	transition: opacity .25s ease-in-out;
+}
+.back:hover span:after {
+	content: "";
+	opacity: 1;
+}
+.back:hover > .back-svg {
+	left: -.5rem;
+}
+
+/* HEADER */
+.header {
+	@apply flex items-center h-16 w-full mb-8 overflow-hidden
+}
+.header nav {
+	@apply flex items-center w-full px-5
+}
+.header .logo, .header ul, .header ul li {
+	@apply flex
+}
+.header p {
+	margin-left: 2rem;
+}
+.header ul li a:hover {
+	cursor: pointer;
+}
+.header ul li a {
+	@apply font-medium text-primary relative py-5 px-5
+}
+.header ul li a:after {
+	content: "";
+	background-color: #ffcc03;
+	border-radius: 30px;
+	scale: 0;
+	height: 10px;
+	width: 100%;
+	position: absolute;
+	bottom: -.3rem;
+	left: 0;
+	transition: scale .25s ease-out;
+}
+.header ul li a:hover:after {
+	scale: 1;
+}
+.header .collapse-button, .sidebar .collapse-button {
+	@apply hidden
+}
+@media screen and (max-width: 1024px) {
+	.header ul.collapse-mobile {
+		display: none;
+	}
+	.header .collapse-button, .sidebar .collapse-button {
+		display: flex;
+	}
+}
+
+/* SIDEBAR */
+.sidebar {
+	@apply sticky z-50 float-left top-9 bg-primary min-h-[330px] h-[330px] w-60 rounded-tr-2xl rounded-br-2xl transition-all duration-700
+}
+.sidebar ul {
+	@apply py-4 px-3
+}
+.sidebar ul li {
+	@apply mb-3
+}
+.sidebar .divider:after {
+	content: "";
+	@apply bg-secondary;
+	opacity: .2;
+	height: 1px;
+	width: 100%;
+	position: relative;
+	display: flex;
+}
+.sidebar ul li:last-child {
+	@apply mb-0
+}
+.sidebar ul li a {
+	@apply flex w-full p-3 justify-between rounded-2xl text-secondary font-medium;
+	transition: background-color .27s ease-in-out, box-shadow .27s ease-in-out;
+}
+.sidebar ul li a:hover {
+	background-color: rgba(255, 255, 255, .3);
+	box-shadow: 0 2px 5px rgba(0, 0, 0, .15);
+}
+@media screen and (max-width: 1024px) {
+	.sidebar {
+		transform: translateX(-100%);
+		position: fixed;
+		top: auto;
+	}
+	.sidebar.active {
+		transform: translateX(0);
+	}
+}
+
+/* FORMS */
+@media screen and (max-width: 1024px) {
+	.forms {
+		width: 95%;
+	}
+}
+
+/* FOOTER */
+.footer {
+	@apply flex flex-col bg-primary justify-center items-center py-5 mt-10
+}
+.footer img {
+	@apply mb-3
+}
+.footer p {
+	@apply text-secondary
+}
+
+/* MASONRY */
+.container-masonry {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-auto-flow: dense;
+	gap: 2rem;
+}
+.masonry {
+	margin: 0;
+	display: grid;
+	grid-template-rows: 1fr auto;
+}
+.masonry > .masonry-item {
+	grid-row: 1 / -1;
+	grid-column: 1;
+}
+@media screen and (max-width: 1024px) {
+	.container-masonry {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+/* TOOLTIP */
+.tooltip-inner {
+	background-color: rgba(0, 0, 0, .5);
+	border-radius: 15px;
+}
+
+/* BADGE */
+.badge {
+	position: relative;
+	left: -3rem;
+	color: #fff;
+	height: 38px;
+	padding: 0 1rem 0 3.3rem;
+	border-radius: 30px;
+	display: flex;
+	align-items: center;
+}
+.badge.bg-water { background-color: #3393dd; }
+.badge.bg-dragon { background-color: #0070ca; }
+.badge.bg-electrik { background-color: #fbd200; }
+.badge.bg-fight { background-color: #e12c6a; }
+.badge.bg-bug { background-color: #83c400; }
+.badge.bg-fire { background-color: #ff983e; }
+.badge.bg-fly { background-color: #8bace4; }
+.badge.bg-ghost { background-color: #4a6ab3; }
+.badge.bg-grass { background-color: #33c149; }
+.badge.bg-ground { background-color: #e97233; }
+.badge.bg-ice { background-color: #49d2c1; }
+.badge.bg-normal { background-color: #929ba4; }
+.badge.bg-poison { background-color: #b767d0; }
+.badge.bg-psy { background-color: #ff6676; }
+.badge.bg-rock { background-color: #c9b787; }
+
+/* POKEMONS */
+@media screen and (max-width: 1279px) {
+	.pokemonCols {
+		flex-direction: column-reverse;
+	}
+	.pokemonCols > div:first-child {
+		min-height: auto;
+		padding-left: 0;
+		width: 100%;
+	}
+	.pokemonCols > div:last-child {
+		position: relative;
+		margin-bottom: 2rem;
+		top: auto;
+		width: 100%;
+	}
+}
+
+/* CAROUSEL */
+.carousel {
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+	position: relative;
+	overflow: hidden;
+	border-radius: 15px;
+	min-height: 15rem;
+	padding: 0 .5rem;
+}
+.carousel-container {
+	display: flex;
+	transition: transform .3s ease-in-out;
+	transform: translate3d(0, 0, 0);
+}
+.carousel-items {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 15rem;
+	padding: 2.5rem;
+}
+.carousel-next, .carousel-prev {
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .75);
+	border-radius: 50%;
+	height: 3rem;
+	width: 3rem;
+	top: 50%;
+	margin-top: -1.5rem;
+	opacity: .7;
+	right: 1.5rem;
+	cursor: pointer;
+	position: absolute;
+	transition: transform .3s ease-in-out, opacity .3s ease-in-out;
+}
+.carousel-next:hover, .carousel-prev:hover {
+	opacity: 1;
+}
+.carousel-next-hidden, .carousel-prev-hidden {
+	opacity: 0;
+}
+.carousel-next {
+	background: url(~@static/arrow.svg) center center no-repeat;
+	transform: rotate(-90deg);
+}
+.carousel-next:hover {
+	transform: scale(1.2) rotate(-90deg);
+}
+.carousel-prev {
+	background: url(~@static/arrow.svg) center center no-repeat;
+	transform: rotate(90deg);
+	right: auto;
+	left: 1.5rem;
+}
+.carousel-prev:hover {
+	transform: scale(1.2) rotate(90deg);
+}

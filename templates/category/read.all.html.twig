@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les types{% endblock %}
+{% set titleSection = 'Tous les types' %}
+
+{% block body %}
+	{% include('includes/title.twig') %}
+
+	<div class="container-masonry mt-10">
+		{% for category in categories %}
+		<div class="masonry relative">
+			<a href="{{ path('category_readby', { 'category': category.url }) }}" class="masonry-item p-5 rounded-2xl shadow-lg bg-{{ category.url }} bg-opacity-50 hover:bg-opacity-100 text-shadow text-white transition-all">
+				<div class="absolute -top-4 -left-4 border-4 border-white rounded-full">
+					<img src="{{ asset('static/uploads/categories/' ~category.getLogoUrl()) }}" alt="logo" width="35" height="35">
+				</div>
+				<div class="flex items-center justify-between mt-3">
+					<p>Type <strong>{{ category.name }}</strong></p>
+				</div>
+				<div class="flex items-center mt-5">
+					<div class="flex items-center mr-auto">
+						{% if category.pokemon[0].imageurl is defined %}
+						<img src="{{ asset('static/uploads/pokemons/'~category.pokemon[0].imageurl) }}" width="50" height="50" alt="pokemon" class="min-h-[50px] max-h-[50px] object-contain">
+						{% endif %}
+					</div>
+					<div class="flex items-center">
+						<img src="{{ asset('static/pokeball.png') }}" class="flex border-2 border-white rounded-full mr-2" height="35" width="35" alt="pokeball">
+						<strong>
+							{% for c in count[category.id] %}
+								{{ c.count }}
+							{% endfor %}
+						</strong>
+					</div>
+				</div>
+			</a>
+		</div>
+		{% endfor %}
+	</div>
+{% endblock %}
+

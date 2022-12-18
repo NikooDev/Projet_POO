@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ categorie|capitalize }}{% endblock %}
+{% set titleSection = 'Type ' ~ categorie|capitalize %}
+
+{% block body %}
+	{% include('includes/title.twig') %}
+
+	{% if pokemons|length == 0 %}
+		<p class="mt-5">Il n'y a pas de pokemons dans cette catégorie</p>
+		<a href="{{ path('pokemon_create') }}" class="inline-flex bg-primary hover:bg-secondary text-secondary hover:text-primary font-semibold mt-4 py-3 px-5 rounded-2xl transition-colors duration-300">Ajouter un pokemon</a>
+	{% endif %}
+	<div class="container-masonry mt-10">
+		{% for pokemon in pokemons %}
+			<div class="masonry relative">
+				<a href="{{ path('pokemon_read', { 'name': pokemon.name|lower }) }}" class="flex flex-col items-center relative justify-center masonry-item p-5 rounded-2xl shadow-lg bg-{{ pokemon.category.url }} bg-opacity-50 hover:bg-opacity-100 hover:text-white text-shadow transition-all">
+					<div class="absolute -top-4 -left-4 border-4 border-white rounded-full">
+						<img src="{{ asset('static/uploads/categories/' ~pokemon.category.getLogoUrl()) }}" alt="logo" width="35" height="35">
+					</div>
+					<div class="flex">
+						<img src="{{ asset('static/uploads/pokemons/'~pokemon.imageurl) }}" height="200" width="200" class="object-contain" alt="pokemon">
+					</div>
+					<div class="absolute bottom-0 w-full py-2 bg-black bg-opacity-50 text-center rounded-b-2xl">
+						<span class="text-white font-medium">{{ pokemon.name|capitalize }}</span>
+					</div>
+					<div class="absolute top-4 right-4">
+						<p data-bs-toggle="tooltip" data-bs-placement="left" title="Créé par {{ pokemon.author|capitalize }}">
+							<svg focusable="false" aria-hidden="true" class="fill-white opacity-80" height="35" width="35" viewBox="0 0 24 24" data-testid="AccountCircleIcon" aria-label="fontSize large">
+								<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88C7.55 15.8 9.68 15 12 15s4.45.8 6.14 2.12C16.43 19.18 14.03 20 12 20z"></path>
+							</svg>
+						</p>
+					</div>
+				</a>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

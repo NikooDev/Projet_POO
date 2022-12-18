@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+{% set titleSection = 'Inscrivez-vous' %}
+
+{% block body %}
+	{% include('includes/title.twig') %}
+	{% set err = [] %}
+
+	{% for error in errors %}
+		{% set err = err|merge({(error.field): error.message}) %}
+	{% endfor %}
+
+	{{ form_start(registrationForm, { 'attr': {'class': 'flex flex-col mt-5 p-5 w-7/12 mx-auto forms'}}) }}
+	<div class="flex flex-col mb-3">
+		{{ form_label(registrationForm.name, null, { 'label': 'Nom', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
+		{{ form_widget(registrationForm.name, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md outline-none'} }) }}
+		{% if err['children[name].data'] is defined %}
+			<span class="text-red-600 font-semibold my-2">{{ err['children[name].data'] }}</span>
+		{% endif %}
+	</div>
+	<div class="flex flex-col mb-3">
+		{{ form_label(registrationForm.firstname, null, { 'label': 'Prénom', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
+		{{ form_widget(registrationForm.firstname, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md outline-none'} }) }}
+		{% if err['children[firstname].data'] is defined %}
+			<span class="text-red-600 font-semibold my-2">{{ err['children[firstname].data'] }}</span>
+		{% endif %}
+	</div>
+	<div class="flex flex-col mb-3">
+		{{ form_label(registrationForm.username, null, { 'label': 'Pseudo', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
+		{{ form_widget(registrationForm.username, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md outline-none'} }) }}
+		{% if err['children[username].data'] is defined %}
+			<span class="text-red-600 font-semibold my-2">{{ err['children[username].data'] }}</span>
+		{% endif %}
+	</div>
+	<div class="flex flex-col mb-6">
+		{{ form_label(registrationForm.plainPassword, null, { 'label': 'Mot de passe', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
+		{{ form_widget(registrationForm.plainPassword, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md outline-none'} }) }}
+		{% if err['children[plainPassword].data'] is defined %}
+			<span class="text-red-600 font-semibold my-2">{{ err['children[plainPassword].data'] }}</span>
+		{% endif %}
+	</div>
+
+	<button type="submit" data-mdb-ripple="true" data-mdb-ripple-color="light" class="bg-primary p-3.5 color-secondary font-semibold rounded-2xl shadow-md hover:bg-secondary text-secondary hover:text-primary transition-colors duration-300">S'INSCRIRE</button>
+	{{ form_end(registrationForm) }}
+{% endblock %}

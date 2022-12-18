@@ -1,0 +1,170 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un pokemon{% endblock %}
+{% set titleSection = 'Ajouter un pokemon' %}
+
+{% block body %}
+	{% include('includes/title.twig') %}
+	{% set err = [] %}
+
+	{% for error in errors %}
+		{% set err = err|merge({(error.field): error.message}) %}
+	{% endfor %}
+
+	{{ form_start(createForm, { 'attr': {'class': 'flex flex-col mt-5 py-5 w-7/12 mx-auto forms'}}) }}
+	<div class="flex flex-col mb-3">
+		{{ form_label(createForm.name, null, { 'label': 'Nom', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
+		{{ form_widget(createForm.name, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md outline-none'} }) }}
+		{% if err['children[name].data'] is defined %}
+			<span class="text-red-600 font-semibold my-2">{{ err['children[name].data'] }}</span>
+		{% endif %}
+	</div>
+	<div class="flex flex-col mb-3">
+		{{ form_label(createForm.type, null, { 'label': 'Type', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
+		{{ form_widget(createForm.type, { required: false, 'attr': {'class': 'text-lg py-2.5 px-3.5 rounded-2xl shadow-md outline-none'} }) }}
+		{% if err['children[type].data'] is defined %}
+			<span class="text-red-600 font-semibold my-2">{{ err['children[type].data'] }}</span>
+		{% endif %}
+	</div>
+	<h2 class="mt-5 text-2xl text-secondary mb-3">Caractéristiques</h2>
+	<div class="flex justify-between">
+		<div class="flex flex-col mb-3 w-2/6">
+			{{ form_label(createForm.size, null, { 'label': 'Taille', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
+			{{ form_widget(createForm.size, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-tl-2xl rounded-bl-2xl shadow-md outline-none'} }) }}
+			{% if err['children[size].data'] is defined %}
+				<span class="text-red-600 font-semibold my-2">{{ err['children[size].data'] }}</span>
+			{% endif %}
+		</div>
+		<div class="flex flex-col mb-3 w-2/6">
+			{{ form_label(createForm.weight, null, { 'label': 'Poids', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
+			{{ form_widget(createForm.weight, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 shadow-md outline-none'} }) }}
+			{% if err['children[weight].data'] is defined %}
+				<span class="text-red-600 font-semibold my-2">{{ err['children[weight].data'] }}</span>
+			{% endif %}
+		</div>
+		<div class="flex flex-col mb-3 w-2/6">
+			{{ form_label(createForm.num_pokedex, null, { 'label': 'Pokedex', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
+			{{ form_widget(createForm.num_pokedex, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-tr-2xl rounded-br-2xl shadow-md outline-none'} }) }}
+			{% if err['children[num_pokedex].data'] is defined %}
+				<span class="text-red-600 font-semibold my-2">{{ err['children[num_pokedex].data'] }}</span>
+			{% endif %}
+		</div>
+	</div>
+	<div class="flex flex-col mb-3">
+		{{ form_label(createForm.sex, null, { 'label': 'Sexe', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
+		{{ form_widget(createForm.sex, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md outline-none'} }) }}
+		{% if err['children[sex].data'] is defined %}
+			<span class="text-red-600 font-semibold my-2">{{ err['children[sex].data'] }}</span>
+		{% endif %}
+	</div>
+	<div class="flex flex-col mb-3">
+		{{ form_label(createForm.catch_rate, null, { 'label': 'Taux de capture', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
+		{{ form_widget(createForm.catch_rate, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md outline-none'} }) }}
+		{% if err['children[catch_rate].data'] is defined %}
+			<span class="text-red-600 font-semibold my-2">{{ err['children[catch_rate].data'] }}</span>
+		{% endif %}
+	</div>
+	<div class="flex flex-col mb-3">
+		{{ form_label(createForm.color, null, { 'label': 'Couleur', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
+		{{ form_widget(createForm.color, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md outline-none'} }) }}
+		{% if err['children[color].data'] is defined %}
+			<span class="text-red-600 font-semibold my-2">{{ err['children[color].data'] }}</span>
+		{% endif %}
+	</div>
+	<div class="flex flex-col mb-3 relative">
+		{{ form_label(createForm.image_url, null, { 'label': 'Image', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
+		<div class="flex">
+			<div class="flex items-baseline justify-between w-full bg-white rounded-2xl shadow-md py-4 px-3.5">
+				{{ form_widget(createForm.image_url, { required: false, 'id': 'imagePreview', 'attr': {'class': 'outline-none hidden'} }) }}
+				<a href="#" class="inline-flex justify-center bg-secondary hover:bg-opacity-80 text-white font-semibold w-full py-3 px-5 rounded-2xl transition-colors duration-300" id="addImage">
+					<span class="mr-2">Ajouter une image</span>
+					<svg focusable="false" aria-hidden="true" height="24" width="24" fill="currentColor" viewBox="0 0 24 24" data-testid="AddPhotoAlternateRoundedIcon" aria-label="fontSize large">
+						<path d="M21.02 5H19V2.98c0-.54-.44-.98-.98-.98h-.03c-.55 0-.99.44-.99.98V5h-2.01c-.54 0-.98.44-.99.98v.03c0 .55.44.99.99.99H17v2.01c0 .54.44.99.99.98h.03c.54 0 .98-.44.98-.98V7h2.02c.54 0 .98-.44.98-.98v-.04c0-.54-.44-.98-.98-.98zM16 9.01V8h-1.01c-.53 0-1.03-.21-1.41-.58-.37-.38-.58-.88-.58-1.44 0-.36.1-.69.27-.98H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8.28c-.3.17-.64.28-1.02.28-1.09-.01-1.98-.9-1.98-1.99zM15.96 19H6c-.41 0-.65-.47-.4-.8l1.98-2.63c.21-.28.62-.26.82.02L10 18l2.61-3.48c.2-.26.59-.27.79-.01l2.95 3.68c.26.33.03.81-.39.81z"></path>
+					</svg>
+				</a>
+			</div>
+			<div class="flex items-center justify-center w-full bg-white rounded-2xl shadow-md py-4 px-3.5 ml-5 hidden" id="previewContainer">
+				<span class="hidden text-red-600 font-semibold my-2 text-center" id="errorTypes">Votre image doit être de<br>type jpg ou png</span>
+				<img height="100" width="100" alt="preview" class="hidden" id="preview">
+			</div>
+		</div>
+		{% if err['children[image_url].data'] is defined %}
+			<span class="text-red-600 font-semibold my-2">{{ err['children[image_url].data'] }}</span>
+		{% endif %}
+	</div>
+	<h2 class="mt-5 text-2xl text-secondary mb-3">À propos</h2>
+	<div class="flex flex-col mb-3">
+		{{ form_label(createForm.description, null, { 'label': 'Description', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
+		{{ form_widget(createForm.description, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md resize-none outline-none', 'maxlength': 200} }) }}
+		{% if err['children[description].data'] is defined %}
+			<span class="text-red-600 font-semibold my-2">{{ err['children[description].data'] }}</span>
+		{% endif %}
+	</div>
+	<div class="flex flex-col mb-3">
+		{{ form_label(createForm.attitude, null, { 'label': 'Attitude', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
+		{{ form_widget(createForm.attitude, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md resize-none outline-none', 'maxlength': 200} }) }}
+		{% if err['children[attitude].data'] is defined %}
+			<span class="text-red-600 font-semibold my-2">{{ err['children[attitude].data'] }}</span>
+		{% endif %}
+	</div>
+	<div class="flex flex-col mb-3">
+		{{ form_label(createForm.differences, null, { 'label': 'Différences', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
+		{{ form_widget(createForm.differences, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md resize-none outline-none', 'maxlength': 200} }) }}
+		{% if err['children[differences].data'] is defined %}
+			<span class="text-red-600 font-semibold my-2">{{ err['children[differences].data'] }}</span>
+		{% endif %}
+	</div>
+	<div class="flex flex-col mb-3">
+		{{ form_label(createForm.evolution, null, { 'label': 'Évolution (Facultatif)', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
+		{{ form_widget(createForm.evolution, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md resize-none outline-none', 'maxlength': 200} }) }}
+		{% if err['children[evolution].data'] is defined %}
+			<span class="text-red-600 font-semibold my-2">{{ err['children[evolution].data'] }}</span>
+		{% endif %}
+	</div>
+	<div class="flex flex-col mb-5">
+		{{ form_label(createForm.talent, null, { 'label': 'Talent', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
+		{{ form_widget(createForm.talent, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md resize-none outline-none', 'maxlength': 200} }) }}
+		{% if err['children[talent].data'] is defined %}
+			<span class="text-red-600 font-semibold my-2">{{ err['children[talent].data'] }}</span>
+		{% endif %}
+	</div>
+
+	<button type="submit" data-mdb-ripple="true" data-mdb-ripple-color="light" class="bg-primary p-3.5 color-secondary font-semibold rounded-2xl shadow-md hover:bg-secondary text-secondary hover:text-primary transition-colors duration-300">AJOUTER</button>
+	{{ form_end(createForm) }}
+{% endblock %}
+
+{% block js %}
+	<script>
+		(() => {
+			const imagePreview = document.getElementById('imagePreview')
+			const image = document.getElementById('preview')
+			const addImage = document.getElementById('addImage')
+			const previewContainer = document.getElementById('previewContainer')
+			const errorTypes = document.getElementById('errorTypes')
+
+			addImage.addEventListener('click', (event) => {
+				event.preventDefault()
+				imagePreview.click()
+			})
+
+			if (image && imagePreview) {
+				imagePreview.addEventListener('change', (event) => {
+					if (imagePreview.files[0]) {
+						const type = imagePreview.files[0].type
+						if (type === 'image/png' || type === 'image/jpg') {
+							let reader = new FileReader()
+							reader.onload = (event) => {
+								image.setAttribute('src', event.target.result)
+								image.classList.remove('hidden')
+							}
+							reader.readAsDataURL(event.target.files[0])
+						} else {
+							errorTypes && errorTypes.classList.remove('hidden')
+						}
+						previewContainer.classList.remove('hidden')
+					}
+				})
+			}
+		})()
+	</script>
+{% endblock %}

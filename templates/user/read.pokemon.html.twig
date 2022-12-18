@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+{% set titleSection = 'Mon compte' %}
+
+{% block body %}
+	{% include('includes/title.twig') %}
+
+	<h2 class="mt-10 text-2xl text-secondary mb-2">Profil</h2>
+	<div class="leading-8 text-[1.1rem]">
+		<p><strong>Nom : </strong>{{ app.user.name|capitalize }}</p>
+		<p><strong>Prénom : </strong>{{ app.user.firstname|capitalize }}</p>
+		<p><strong>Pseudo : </strong>{{ app.user.userIdentifier|capitalize }}</p>
+	</div>
+
+	<h2 class="mt-10 text-2xl text-secondary">Créations</h2>
+	{% if pokemons|length == 0 %}
+		<p class="mt-5">Vous n'avez pas encore créé de pokemons</p>
+		<a href="{{ path('pokemon_create') }}" class="inline-flex bg-primary hover:bg-secondary text-secondary hover:text-primary font-semibold mt-4 py-3 px-5 rounded-2xl transition-colors duration-300">Ajouter un pokemon</a>
+	{% endif %}
+	<div class="container-masonry mt-5">
+		{% for key, pokemon in pokemons %}
+		<div class="masonry relative">
+			<a href="{{ path('pokemon_read', { 'name': pokemon.name|lower }) }}" class="masonry-item flex items-center justify-center overflow-hidden relative bg-{{ pokemon.category.url }} bg-opacity-50 hover:bg-opacity-100 p-5 rounded-2xl shadow-lg transition-colors">
+				<div class="flex flex-col">
+					<img src="{{ asset('static/uploads/pokemons/'~pokemon.imageurl) }}" height="200" width="200" class="object-contain" alt="pokemon">
+				</div>
+				<div data-bs-toggle="tooltip" data-bs-placement="right" title="{{ pokemon.type|capitalize }}" class="absolute top-2 left-2 border-2 border-white rounded-full">
+					<img src="{{ asset('static/uploads/categories/' ~pokemon.category.getLogoUrl()) }}" alt="logo" width="35" height="35">
+				</div>
+				<div class="absolute bottom-0 w-full py-2 bg-black bg-opacity-50 text-center">
+					<span class="text-white font-medium">{{ pokemon.name|capitalize }}</span>
+				</div>
+			</a>
+			<div class="dropdown absolute right-0 top-0 py-2 px-4 group">
+				<button type="button" class="dropdown-toggle transition-colors text-white p-1 contrast-125 group-hover:text-{{ pokemon.category.url }}" id="{{ 'btn'~key~'toggle' }}" data-bs-toggle="dropdown" aria-expanded="false">
+					<svg focusable="false" fill="currentColor" aria-hidden="true" height="32" width="32" viewBox="0 0 24 24" data-testid="MoreHorizIcon" aria-label="fontSize large">
+						<path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+					</svg>
+				</button>
+				<ul class="dropdown-menu min-w-max absolute left-[-8rem!important] min-w-[10rem] hidden bg-white z-50 py-3 text-left rounded-2xl shadow-lg mt-1 bg-clip-padding" aria-labelledby="{{ 'btn'~key~'toggle' }}">
+					<li class="hover:bg-{{ pokemon.category.url }}">
+						<a href="{{ path('pokemon_update', { 'name': pokemon.name|lower }) }}" class="dropdown-item flex py-1.5 px-3 font-medium text-sm hover:text-white hover:cursor-pointer active:bg-{{ pokemon.category.url }}">Modifier</a>
+					</li>
+					<li class="hover:bg-{{ pokemon.category.url }}">
+						<a href="#" data-bs-toggle="modal" data-bs-target="#confirmDelete{{ pokemon.id }}" class="dropdown-item flex py-1.5 px-3 font-medium text-sm hover:text-white hover:cursor-pointer active:bg-{{ pokemon.category.url }}">Supprimer</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto" id="confirmDelete{{ pokemon.id }}" tabindex="-1" aria-labelledby="confirmDeleteLabel{{ pokemon.id }}" aria-hidden="true">
+			<div class="modal-dialog relative w-auto pointer-events-none">
+				<div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-2xl outline-none text-current">
+					<div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+						<h5 class="text-xl font-medium leading-normal text-gray-800" id="confirmDeleteLabel{{ pokemon.id }}">Supprimer</h5>
+					</div>
+					<div class="modal-body relative p-4 font-medium">
+						Voulez-vous vraiment supprimer {{ pokemon.name|capitalize }} ?
+					</div>
+					<div class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+						<button type="button" class="px-6 py-2.5 bg-secondary text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-opacity-70 hover:shadow-lg focus:bg-opacity-70 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-opacity-70 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">Annuler</button>
+						<a href="{{ path('pokemon_delete', { 'id': pokemon.id }) }}" class="px-6 py-2.5 bg-secondary text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-600 active:shadow-lg transition duration-150 ease-in-out ml-1">Supprimer</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+{% endblock %}

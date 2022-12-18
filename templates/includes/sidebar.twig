@@ -1,0 +1,51 @@
+<aside class="sidebar" id="sidebar" role="complementary">
+	<ul>
+		<li>
+			<a href="{{ path('home') }}" data-mdb-ripple="true" data-mdb-ripple-color="light">
+				<span>Accueil</span>
+				{% include('includes/icons/arrow.twig') %}
+			</a>
+		</li>
+		<li>
+			<a href="{{ path('category_readall') }}" data-mdb-ripple="true" data-mdb-ripple-color="light">
+				<span>Les types</span>
+				{% include('includes/icons/arrow.twig') %}
+			</a>
+		</li>
+		{% if app.user %}
+		<li>
+			<a href="{{ path('pokemon_user', { 'username': app.user.userIdentifier }) }}" data-mdb-ripple="true" data-mdb-ripple-color="light">
+				<span>Mon compte</span>
+				{% include('includes/icons/arrow.twig') %}
+			</a>
+		</li>
+		<li>
+			<a href="{{ path('pokemon_create') }}" data-mdb-ripple="true" data-mdb-ripple-color="light">
+				<span>Ajouter un pokemon</span>
+				{% include('includes/icons/arrow.twig') %}
+			</a>
+		</li>
+		<li class="divider"></li>
+		<li>
+			<a href="{{ path('auth_logout') }}" data-mdb-ripple="true" data-mdb-ripple-color="light">
+				<span>Déconnexion</span>
+				{% include('includes/icons/arrow.twig') %}
+			</a>
+		</li>
+		{% else %}
+		<li class="collapse-button divider"></li>
+		<li class="collapse-button">
+			<a href="{{ path('auth_signup') }}" data-mdb-ripple="true" data-mdb-ripple-color="light">
+				<span>Créer un compte</span>
+				{% include('includes/icons/arrow.twig') %}
+			</a>
+		</li>
+		<li class="collapse-button">
+			<a href="{{ path('auth_login') }}" data-mdb-ripple="true" data-mdb-ripple-color="light">
+				<span>Connexion</span>
+				{% include('includes/icons/arrow.twig') %}
+			</a>
+		</li>
+		{% endif %}
+	</ul>
+</aside>
