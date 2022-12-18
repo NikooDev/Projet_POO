@@ -9,28 +9,28 @@
 	<div class="flex relative z-10 mt-10 pokemonCols">
 		<div class="w-60p min-h-[50rem] mr-8 pl-8 relative break-word">
 			<div class="mb-5">
-				<h2 class="text-secondary text-2xl mb-1">À propos</h2>
-				<p>{{ pokemon.description }}</p>
+				<h2 class="text-secondary text-2xl mb-1">Description</h2>
+				<p>{{ pokemon.description|nl2br }}</p>
 			</div>
 			<div class="mb-5">
 				<h3 class="text-secondary text-2xl mb-1">Physionomie et attitude</h3>
-				<p>{{ pokemon.attitude }}</p>
+				<p>{{ pokemon.attitude|nl2br }}</p>
 			</div>
 			<div class="mb-5">
 				<h4 class="text-secondary text-2xl mb-1">Différences</h4>
-				<p>{{ pokemon.differences }}</p>
+				<p>{{ pokemon.differences|nl2br }}</p>
 			</div>
 			<div class="mb-5">
 				<h5 class="text-secondary text-2xl mb-1">Évolutions</h5>
 				{% if pokemon.evolution %}
-					<p>{{ pokemon.evolution }}</p>
+					<p>{{ pokemon.evolution|nl2br }}</p>
 				{% else %}
 					<p>Il n'y a pas d'évolution sur ce pokemon</p>
 				{% endif %}
 			</div>
 			<div>
 				<h6 class="text-secondary text-2xl mb-1">Talents</h6>
-				{{ pokemon.talent }}
+				{{ pokemon.talent|nl2br }}
 			</div>
 		</div>
 		<div class="flex flex-col shadow-lg rounded-2xl min-w-[400px] sticky top-9 z-10 self-start overflow-y-auto">
@@ -52,11 +52,11 @@
 						</p>
 						<p class="flex">
 							<span class="w-1/2">Taille : </span>
-							<span class="font-medium w-1/2 overflow-hidden text-ellipsis">{{ pokemon.size }}</span>
+							<span class="font-medium w-1/2 overflow-hidden text-ellipsis">{{ pokemon.size }} cm</span>
 						</p>
 						<p class="flex">
 							<span class="w-1/2">Poids : </span>
-							<span class="font-medium w-1/2 overflow-hidden text-ellipsis">{{ pokemon.weight }}</span>
+							<span class="font-medium w-1/2 overflow-hidden text-ellipsis">{{ pokemon.weight }} kg</span>
 						</p>
 						<p class="flex">
 							<span class="w-1/2">Taux de capture : </span>
@@ -129,11 +129,11 @@
 					</p>
 					<p class="flex">
 						<span class="w-40p">Taille : </span>
-						<span class="font-medium w-60p">{{ pokemon.size }}</span>
+						<span class="font-medium w-60p">{{ pokemon.size }} cm</span>
 					</p>
 					<p class="flex">
 						<span class="w-40p">Poids : </span>
-						<span class="font-medium w-60p">{{ pokemon.weight }}</span>
+						<span class="font-medium w-60p">{{ pokemon.weight }} kg</span>
 					</p>
 					<p class="flex">
 						<span class="w-40p">Taux de capture : </span>

@@ -185,7 +185,7 @@ class PokemonController extends AbstractController
 			$this->em->persist($pokemons);
 			$this->em->flush();
 
-			return $this->redirectToRoute('pokemon_user', ['username' => $user->getUserIdentifier()]);
+			return $this->redirectToRoute('pokemon_read', ['name' => $name]);
 		} else {
 			$errorsForm = $validator->validate($form);
 			foreach ($errorsForm as $error) {

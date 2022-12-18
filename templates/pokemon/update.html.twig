@@ -29,14 +29,14 @@
 	<h2 class="mt-5 text-2xl text-secondary mb-3">Caractéristiques</h2>
 	<div class="flex justify-between">
 		<div class="flex flex-col mb-3 w-2/6">
-			{{ form_label(updateForm.size, null, { 'label': 'Taille', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
+			{{ form_label(updateForm.size, null, { 'label': 'Taille (cm)', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
 			{{ form_widget(updateForm.size, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-tl-2xl rounded-bl-2xl shadow-md outline-none'} }) }}
 			{% if err['children[size].data'] is defined %}
 				<span class="text-red-600 font-semibold my-2">{{ err['children[size].data'] }}</span>
 			{% endif %}
 		</div>
 		<div class="flex flex-col mb-3 w-2/6">
-			{{ form_label(updateForm.weight, null, { 'label': 'Poids', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
+			{{ form_label(updateForm.weight, null, { 'label': 'Poids (kg)', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
 			{{ form_widget(updateForm.weight, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 shadow-md outline-none'} }) }}
 			{% if err['children[weight].data'] is defined %}
 				<span class="text-red-600 font-semibold my-2">{{ err['children[weight].data'] }}</span>
@@ -98,35 +98,35 @@
 	<h2 class="mt-5 text-2xl text-secondary mb-3">À propos</h2>
 	<div class="flex flex-col mb-3">
 		{{ form_label(updateForm.description, null, { 'label': 'Description', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
-		{{ form_widget(updateForm.description, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md resize-none outline-none', 'maxlength': 200} }) }}
+		{{ form_widget(updateForm.description, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md resize-none outline-none', 'maxlength': 500} }) }}
 		{% if err['children[description].data'] is defined %}
 			<span class="text-red-600 font-semibold my-2">{{ err['children[description].data'] }}</span>
 		{% endif %}
 	</div>
 	<div class="flex flex-col mb-3">
 		{{ form_label(updateForm.attitude, null, { 'label': 'Attitude', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
-		{{ form_widget(updateForm.attitude, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md resize-none outline-none', 'maxlength': 200} }) }}
+		{{ form_widget(updateForm.attitude, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md resize-none outline-none', 'maxlength': 500} }) }}
 		{% if err['children[attitude].data'] is defined %}
 			<span class="text-red-600 font-semibold my-2">{{ err['children[attitude].data'] }}</span>
 		{% endif %}
 	</div>
 	<div class="flex flex-col mb-3">
 		{{ form_label(updateForm.differences, null, { 'label': 'Différences', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
-		{{ form_widget(updateForm.differences, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md resize-none outline-none', 'maxlength': 200} }) }}
+		{{ form_widget(updateForm.differences, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md resize-none outline-none', 'maxlength': 500} }) }}
 		{% if err['children[differences].data'] is defined %}
 			<span class="text-red-600 font-semibold my-2">{{ err['children[differences].data'] }}</span>
 		{% endif %}
 	</div>
 	<div class="flex flex-col mb-3">
 		{{ form_label(updateForm.evolution, null, { 'label': 'Évolution (Facultatif)', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
-		{{ form_widget(updateForm.evolution, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md resize-none outline-none', 'maxlength': 200} }) }}
+		{{ form_widget(updateForm.evolution, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md resize-none outline-none', 'maxlength': 500} }) }}
 		{% if err['children[evolution].data'] is defined %}
 			<span class="text-red-600 font-semibold my-2">{{ err['children[evolution].data'] }}</span>
 		{% endif %}
 	</div>
 	<div class="flex flex-col mb-5">
 		{{ form_label(updateForm.talent, null, { 'label': 'Talent', 'label_attr': {'class': 'mb-1 font-medium required'} }) }}
-		{{ form_widget(updateForm.talent, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md resize-none outline-none', 'maxlength': 200} }) }}
+		{{ form_widget(updateForm.talent, { required: false, 'attr': {'class': 'text-lg py-2 px-3.5 rounded-2xl shadow-md resize-none outline-none', 'maxlength': 500} }) }}
 		{% if err['children[talent].data'] is defined %}
 			<span class="text-red-600 font-semibold my-2">{{ err['children[talent].data'] }}</span>
 		{% endif %}
