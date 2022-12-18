@@ -132,7 +132,7 @@ class PokemonFormType extends AbstractType
 			->add('num_pokedex', IntegerType::class, [
 				'constraints' => [
 					new NotBlank([
-						'message' => 'Pokédex requis',
+						'message' => 'Pokedex requis',
 					])
 				]
 			]);

@@ -141,7 +141,7 @@ class PokemonEditFormType extends AbstractType
 				'empty_data' => '',
 				'constraints' => [
 					new NotBlank([
-						'message' => 'Pokédex requis',
+						'message' => 'Pokedex requis',
 					])
 				]
 			]);
